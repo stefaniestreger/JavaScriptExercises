@@ -1,0 +1,56 @@
+"use strict";
+
+// get investment amount - loop until user enters a number
+let investment = 0;
+let investTotal = 0;
+do {
+    investment = parseFloat(
+        prompt("Enter investment amount as xxxxx.xx", 10000));
+
+    if (investment > 0) {
+        investTotal += investment;
+    }
+    else {
+        alert("Please enter a positive number");
+    }
+}
+while ( isNaN(investment) || (investment <= 0) );
+
+// get interest rate - loop until user enters a number
+let rate = 0;
+let rateTotal = 0;
+do {
+    rate = parseFloat(prompt("Enter interest rate as xx.x", 7.5));
+
+    if (rate > 0 && rate <= 15) {
+        rateTotal += rate;
+    }
+    else {
+        alert("Please enter a positive number");
+    }
+}
+while ( isNaN(rate) || (rate <= 0) || (rate > 15) );
+
+// get number of years - loop until user enters a number
+let years = 0;
+let yearsTotal = 0;
+do {
+    years = parseInt(prompt("Enter number of years", 10));
+
+    if (years > 0) {
+        yearsTotal += years;
+    }
+    else {
+        alert("Please enter a positive number");
+    }
+}
+while ( isNaN(years) || (years <= 0) );
+
+// calulate future value
+let futureValue = investTotal;
+for (let i = 1; i <= yearsTotal; i++ ) {
+    futureValue = futureValue + (futureValue * rateTotal / 100);
+}
+
+// display results
+document.write(`<p><label>Investment amount = ${investTotal} Interest rate = ${rateTotal} Years = ${yearsTotal}</label></p>`);
