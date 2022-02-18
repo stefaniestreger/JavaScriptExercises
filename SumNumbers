@@ -4,33 +4,33 @@
     <meta charset="UTF-8">	
     <title>Sum of Numbers</title>
     <script>
-		let firstLoop = true; // set variable for first do-while loop
+		let firstLoop = true;
 		do {	
-			let secondLoop = true; // set variable for second do-while loop
+			let secondLoop = true;
 
 			do {	
-				let userNumber = parseInt(prompt("Enter any top number to sum from 1 through 100")); // prompt user for entry and convert to Int		
-				if(userNumber > 0 && userNumber <= 100) { // if number is between 1 and 100, initialize variable for total of nums
+				let userNumber = parseInt(prompt("Enter any top number to sum from 1 through 100"));	
+				if(userNumber > 0 && userNumber <= 100) {
 					let userSum = 0;
 
-				for(let i = 1; i <= userNumber; i++) { // set variable to incrememt [i]
-					userSum += i; // add increment to total of nums
+				for(let i = 1; i <= userNumber; i++) {
+					userSum += i; 
 				}
-				alert("The sum of numbers from 1 through " + userNumber + " is " + userSum); // display alert and stop the loop
+				alert("The sum of numbers from 1 through " + userNumber + " is " + userSum);
 				secondLoop = false;
-// I know this could be just an else catch-all, but you wanted us to test for these 3 use cases specifically
-				} else if (isNaN(userNumber) || userNumber < 0 || userNumber > 100) { 
-				alert("Please enter a number between 1 and 100.");  // if user entry is not a number or outside of 1-100 range, display an error
-				}
-			} while(secondLoop); // run loop through while second loop is true
 
-			let keepGoing = prompt("Do another sum? (y/n)"); // when first loop ends, ask user if they want to enter another value
-			if(keepGoing === "y") { // if yes, set first loop to true, if no, set first loop to false
+				} else if (isNaN(userNumber) || userNumber < 0 || userNumber > 100) { 
+				alert("Please enter a number between 1 and 100."); 
+				}
+			} while(secondLoop);
+
+			let keepGoing = prompt("Do another sum? (y/n)"); 
+			if(keepGoing === "y") {
 				firstLoop = true;
 			} else {
 				firstLoop = false;
 			}
-		} while(firstLoop) // when first loop is true, loop through all the code
+		} while(firstLoop) 
 	</script>
 </head>
 <body>
