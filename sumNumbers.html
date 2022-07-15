@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">	
+    <title>Sum of Numbers</title>
+    <script>
+
+		let outerLoop = true;
+		do {	
+			let innerLoop = true;
+
+			do {	
+				let userResponse = prompt("Enter any top number to sum from 1 through 100");
+				
+				if(!isNaN(userResponse) && userResponse > 0 && userResponse <= 100) {
+					let sum = 0;
+
+				for(let i = 1; i <= userResponse; i++) {
+					sum += i;
+				}
+				alert(`The sum of numbers from 1 through ${userResponse} is ${sum}.`);
+				innerLoop = false;
+
+				} else {
+				alert("Please enter a number between 1 and 100.");
+				}
+			} while(innerLoop);	
+
+			let continueResponse = prompt("Do another sum? (y/n)");
+			if(continueResponse === "y") {
+				outerLoop = true;
+			} else {
+				outerLoop = false;
+			}
+		} while(outerLoop)
+		
+		
+    </script>
+</head>
+<body>
+    <main>
+        <!-- Will show after JavaScript has run -->
+        <h1>Thanks for using the Sum of Numbers application!</h1>
+    </main>
+</body>
+</html>
