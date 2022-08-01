@@ -1,0 +1,58 @@
+const CONFIG = {
+    "customer1": {
+        "filePatterns": [
+            "*.zip"
+        ],
+        "minFiles": 2
+    },
+    "customer2": {
+        "filePatterns": [
+            "*.gz",
+            "*.txt"
+        ],
+        "minFiles": 4
+    }
+}
+// 1. Create a function which takes in a file name and matches it to a given customer based on file pattern.
+// 2. Keep track of which files belong to which customers
+// 3. When the minimumNumber of files is met, print message to console with the customerName and each individual file.
+
+const getCustomerByFileName = (fileNameArray) => {
+// We are doing step 2 here by using an object to track objects 
+    const customerFileMap = {};
+    const customerFileMapKeys = Object.keys(CONFIG);     //Storing the value of the config values. Expecting: ["customer1", "customer2"]
+    customerFileMapKeys.forEach(customer => {     // Loop through those values
+      const filePatterns = CONFIG[customer].filePatterns;     // Getting the file patterns for each customer
+      /*
+      * Creating a variable that will handle our regex aka regular expression
+      * I am mapping the values of our filePattern and replacing it with this regex
+      * Definitely think there is an easier pattern lol but whatevs
+      */
+        const regexPattern = new RegExp(filePatterns.map(pattern => pattern.replace(/\./g, '\\.').replace(/\*/g, '.*')).join('|'));
+      /*
+      * Grabbing our array of fileNames we loop through it in order to test the regex and minFile count
+      * Doing some added error handling
+      */
+      fileNameArray.forEach(fileName => {
+      // Checking our regex
+        if (regexPattern.test(fileName)) {
+          // Getting minFiles and storing it to a variable
+          const minFiles = CONFIG[customer].minFiles;
+          // If there are no files then return an empty array
+          if (!customerFileMap[customer]) {
+            customerFileMap[customer] = [];
+          }
+          // Adding to the array with push method
+          customerFileMap[customer].push(fileName);
+          // Final check for if incoming file(s) are >== minimumFile required and printing to console 
+          if (customerFileMap[customer].length >= minFiles) {
+            console.log(`${customer} has these files: ${customerFileMap[customer].join(', ')}`);
+          }
+        }
+        });
+    });
+};
+/* Test file arrays to pass in */
+const fileArr = ['myText.zip', 'patt.zip'];
+const fileTwoArr = ['cat.gz', 'test.txt', 'optumCare.txt', 'bcbsmi.gz', 'codingIsFun.txt'];
+getCustomerByFileName(fileTwoArr);
